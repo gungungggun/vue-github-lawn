@@ -22,6 +22,11 @@ export default {
       let count = 0
       let data = []
       let week = []
+
+      for (let i = copy.length; i < 53 * 7; i++) {
+        copy.push(0)
+      }
+
       copy.reverse().forEach(d => {
         if (count % 7 === 0) {
           week = []
@@ -41,20 +46,43 @@ export default {
     min () {
       return Math.min.apply(null, this.data)
     },
-    sum () {
+    sumValue () {
+      return this.sum(this.data)
+    },
+    avgValue () {
+      return this.sumValue / this.data.length
+    },
+    medianValue () {
+      return this.median(this.data)
+    }
+  },
+  methods: {
+    calc (d) {
+      if (d > 0) {
+        if (d > this.medianValue) {
+          if (d > (this.medianValue + this.max) / 2) {
+            return 'l5'
+          }
+          return 'l4'
+        } else {
+          if (d > (this.medianValue / 2)) {
+            return 'l3'
+          }
+          return 'l2'
+        }
+      }
+      return 'l1'
+    },
+    sum (arr) {
       let sum = 0
-      let ii = this.data.length
+      let ii = arr.length
       for (let i = 0; i < ii; i++) {
-        sum += this.data[i]
+        sum += arr[i]
       }
       return sum
     },
-    avg () {
-      return this.sum / this.data.length
-    },
-    median () {
-      let copy = this.data.concat()
-      let sort = copy.filter(function (x) {
+    median (arr) {
+      let sort = arr.filter(function (x) {
         return (x > 0)
       })
       sort.sort(function (a, b) {
@@ -73,24 +101,6 @@ export default {
       } else {
         return sort[(sort.length - 1) / 2]
       }
-    }
-  },
-  methods: {
-    calc (d) {
-      if (d > 0) {
-        if (d > this.median) {
-          if (d > (this.median + this.max) / 2) {
-            return 'l5'
-          }
-          return 'l4'
-        } else {
-          if (d > (this.median / 2)) {
-            return 'l3'
-          }
-          return 'l2'
-        }
-      }
-      return 'l1'
     }
   }
 }
