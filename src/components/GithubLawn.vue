@@ -7,16 +7,22 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   name: 'github-lawn',
   props: ['data', 'last'],
   computed: {
     github () {
-      console.log(this.last)
+      let copy = this.data.concat()
+      let m = moment(this.last)
+      for (let i = 0; i < 6 - m.day(); i++) {
+        copy.unshift(null)
+      }
       let count = 0
       let data = []
       let week = []
-      this.data.forEach(d => {
+      copy.reverse().forEach(d => {
         if (count % 7 === 0) {
           week = []
         }
@@ -26,6 +32,7 @@ export default {
         }
         count++
       })
+      console.log(data)
       return data
     },
     max () {

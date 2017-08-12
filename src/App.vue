@@ -14,7 +14,7 @@ export default {
       data: [
         1, 0, 6, 1, 8, 0, 4, 0, 3, 11, 5, 10, 1, 2
       ],
-      last: '2017-8-11'
+      last: '2017-08-10'
     }
   },
   components: {
