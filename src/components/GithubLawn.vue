@@ -1,6 +1,5 @@
 <template>
   <div class="github-lawn">
-    <p>{{ sum }}</p>
     <ul v-for="week in github">
       <li v-for="d in week" :class="calc(d)"></li>
     </ul>
@@ -10,15 +9,10 @@
 <script>
 export default {
   name: 'github-lawn',
-  data () {
-    return {
-      data: [
-        1, 0, 6, 1, 8, 0, 4, 0, 3, 11, 5, 10, 1, 2
-      ]
-    }
-  },
+  props: ['data', 'last'],
   computed: {
     github () {
+      console.log(this.last)
       let count = 0
       let data = []
       let week = []
@@ -32,7 +26,6 @@ export default {
         }
         count++
       })
-      console.log(data)
       return data
     },
     max () {
@@ -66,7 +59,6 @@ export default {
         }
         return 0
       })
-      console.log('m')
       if (sort.length % 2 === 0) {
         let m1 = sort.length / 2
         let m2 = m1 - 1
