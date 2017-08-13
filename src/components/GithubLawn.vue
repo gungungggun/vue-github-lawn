@@ -15,11 +15,30 @@ import moment from 'moment'
 
 export default {
   name: 'github-lawn',
-  props: ['data', 'last', 'unit', 'week'],
+  props: {
+    data: Array,
+    last: {
+      type: String,
+      default: null
+    },
+    unit: {
+      type: String,
+      default: 'contributions'
+    },
+    week: {
+      type: Number,
+      default: 53
+    }
+  },
   computed: {
     github () {
       let copy = this.data.concat()
-      let m = moment(this.last)
+      let m
+      if (this.last == null) {
+        m = moment()
+      } else {
+        m = moment(this.last)
+      }
       for (let i = 0; i <= 6 - m.day(); i++) {
         m.add(1, 'days')
         copy.unshift(null)
@@ -29,11 +48,7 @@ export default {
       let data = []
       let week = []
 
-      let w = 53
-      if (this.week != null) {
-        w = this.week
-      }
-      for (let i = copy.length; i < w * 7; i++) {
+      for (let i = copy.length; i < this.week * 7; i++) {
         copy.push(0)
       }
 
