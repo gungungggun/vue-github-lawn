@@ -1,7 +1,11 @@
 <template>
   <div class="github-lawn">
     <ul v-for="week in github">
-      <li v-for="d in week" :class="calc(d)"></li>
+      <li v-for="d in week" :class="calc(d.num)" v-if="d.num != null">
+        <div class="tip">
+          <span>{{ d.num }} {{ unit }}</span>on {{ d.date }}
+        </div>
+      </li>
     </ul>
   </div>
 </template>
@@ -11,34 +15,42 @@ import moment from 'moment'
 
 export default {
   name: 'github-lawn',
-  props: ['data', 'last'],
+  props: ['data', 'last', 'unit', 'week'],
   computed: {
     github () {
       let copy = this.data.concat()
       let m = moment(this.last)
-      for (let i = 0; i < 6 - m.day(); i++) {
+      for (let i = 0; i <= 6 - m.day(); i++) {
+        m.add(1, 'days')
         copy.unshift(null)
       }
+      m.add(1, 'days')
       let count = 0
       let data = []
       let week = []
 
-      for (let i = copy.length; i < 53 * 7; i++) {
+      let w = 53
+      if (this.week != null) {
+        w = this.week
+      }
+      for (let i = copy.length; i < w * 7; i++) {
         copy.push(0)
       }
 
-      copy.reverse().forEach(d => {
+      copy.forEach(d => {
         if (count % 7 === 0) {
           week = []
         }
-        week.push(d)
+        week.push({
+          num: d,
+          date: m.subtract(1, 'days').format('MMM D, YYYY')
+        })
         if (count % 7 === 6) {
-          data.push(week)
+          data.push(week.reverse())
         }
         count++
       })
-      console.log(data)
-      return data
+      return data.reverse()
     },
     max () {
       return Math.max.apply(null, this.data)
@@ -121,6 +133,7 @@ export default {
   height:10px;
   background:#f0f0f0;
   margin:1px;
+  position:relative;
 }
 .github-lawn ul li:last-child {
   margin-bottom:0;
@@ -139,5 +152,36 @@ export default {
 }
 .github-lawn ul li.l5 {
   background:#196127;
+}
+.github-lawn ul li .tip {
+  background:rgba(0, 0, 0, 0.8);
+  padding:8px 10px;
+  color:#adadad;
+  position:absolute;
+  top:-43px;
+  left:-100px;
+  width:190px;
+  display:none;
+  z-index:2;
+  font-size:11px;
+  border-radius:3px;
+  text-align:center;
+}
+.github-lawn ul li .tip:before{
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+ 	margin-left: -5px;
+	border: 5px solid transparent;
+	border-top: 5px solid rgba(0, 0, 0, 0.8);
+}
+.github-lawn ul li:hover .tip {
+  display:block;
+}
+.github-lawn ul li .tip span {
+  font-weight:bold;
+  color:#fff;
+  margin-right:5px;
 }
 </style>

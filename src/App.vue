@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <github-lawn :data="data" :last="last"></github-lawn>
+    <github-lawn :data="data" :last="last" :unit="unit"></github-lawn>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
       data: [
         1, 0, 6, 1, 8, 0, 4, 0, 3, 11, 5, 10, 1, 2
       ],
+      unit: 'contributions',
       last: '2017-08-10'
     }
   },
