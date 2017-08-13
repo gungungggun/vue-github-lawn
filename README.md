@@ -1,27 +1,32 @@
 # vue-github-lawn
 
-> A Vue.js project
+A github lawn Vue component, Compatible with Vue 2.x
 
-## Build Setup
+## Install
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
+``` sh
+npm install vue-github-lawn
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+``` js
+import GithunLawn from 'vue-github-lawn'
+
+Vue.component('my-component', {
+    components: {
+        GithunLawn
+    }
+});
+```
+
+## Usage
+```
+<github-lawn :data="data" :last="last" :unit="'contributions'"></github-lawn>
+```
+
+## Avaliable props
+| Prop | Type   | Default       | Description                                                   |
+| :--- | :---   | :------       | :---------                                                    |
+| data | Array  | []            | Input data. The data must be sorted latest. example [2, 5, 8] |
+| last | String | null          | Input latest date.                                            |
+| unit | String | contributions | Tooltip message.                                              |
+| week | Number | 53            | column size.                                                  |
