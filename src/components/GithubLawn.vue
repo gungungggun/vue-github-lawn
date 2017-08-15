@@ -134,8 +134,11 @@ export default {
 </script>
 
 <style scoped>
-.github-lawn {
+.github-lawn:after {
+  content:"";
+  display:block;
   clear:both;
+  visibility:hidden;
 }
 .github-lawn ul {
   list-style:none;
