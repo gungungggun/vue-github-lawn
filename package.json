@@ -1,10 +1,11 @@
 {
   "name": "vue-github-lawn",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "vue-github-lawn is a Vue component.",
   "keywords": [
     "lawn"
   ],
+  "main": "dist/build.js",
   "author": "Gun Kimura <gungungggun@gmail.com>",
   "repository": {
     "type": "git",

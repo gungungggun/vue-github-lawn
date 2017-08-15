@@ -9,11 +9,11 @@ npm install vue-github-lawn
 ```
 
 ``` js
-import GithunLawn from 'vue-github-lawn'
+import GithubLawn from 'vue-github-lawn'
 
 Vue.component('my-component', {
     components: {
-        GithunLawn
+        GithubLawn
     }
 });
 ```
