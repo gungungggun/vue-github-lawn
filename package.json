@@ -1,16 +1,28 @@
 {
   "name": "vue-github-lawn",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "gun <gungungggun@gmail.com>",
-  "private": true,
+  "version": "0.0.1",
+  "description": "vue-github-lawn is a Vue component.",
+  "keywords": [
+    "lawn"
+  ],
+  "author": "Gun Kimura <gungungggun@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gungungggun/vue-github-lawn"
+  },
+  "bugs": {
+    "url": "https://github.com/gungungggun/vue-github-lown/issues"
+  },
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
-    "lint": "eslint --ext .js,.vue src test/unit/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "moment": "^2.18.1",
