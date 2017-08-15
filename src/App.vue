@@ -1,14 +1,11 @@
-<template>
-  <div id="app">
-    <div id="g1">
-      <github-lawn :data="data"></github-lawn>
-      <div>test 1</div>
-    </div>
-    <div id="g2">
-      <github-lawn :data="data2"></github-lawn>
-      <div>test 2</div>
-    </div>
-  </div>
+<template lang="pug">
+  div#app
+    div#g1
+      github-lawn(:data="data")
+      div test 1
+    div#g2
+      github-lawn(:data="data2")
+      div test 2
 </template>
 
 <script>
@@ -32,10 +29,9 @@ export default {
 }
 </script>
 
-<style>
-#g1{
-  background:#888;
-  padding:20px;
-  margin-bottom:20px;
-}
+<style lang="stylus">
+#g1
+  background #888
+  padding 20px
+  margin-bottom 20px
 </style>

@@ -1,13 +1,10 @@
-<template>
-  <div class="github-lawn">
-    <ul v-for="week in github">
-      <li v-for="d in week" :class="calc(d.num)" v-if="d.num != null">
-        <div class="tip">
-          <span>{{ d.num }} {{ unit }}</span>on {{ d.date }}
-        </div>
-      </li>
-    </ul>
-  </div>
+<template lang="pug">
+  div.github-lawn
+    ul(v-for="week in github")
+      li(v-for="d in week" :class="calc(d.num)" v-if="d.num != null")
+        div.tip
+          span {{ d.num }} {{ unit }}
+            | on {{ d.date }}
 </template>
 
 <script>
@@ -133,73 +130,62 @@ export default {
 }
 </script>
 
-<style scoped>
-.github-lawn:after {
-  content:"";
-  display:block;
-  clear:both;
-  visibility:hidden;
-}
-.github-lawn ul {
-  list-style:none;
-  margin:0;
-  padding:0;
-  float:left;
-}
-.github-lawn ul li {
-  width:10px;
-  height:10px;
-  background:#f0f0f0;
-  margin:1px;
-  position:relative;
-}
-.github-lawn ul li:last-child {
-  margin-bottom:0;
-}
-.github-lawn ul li.l1 {
-  background:#f0f0f0;
-}
-.github-lawn ul li.l2 {
-  background:#c6e48b;
-}
-.github-lawn ul li.l3 {
-  background:#7bc96f;
-}
-.github-lawn ul li.l4 {
-  background:#239a3b;
-}
-.github-lawn ul li.l5 {
-  background:#196127;
-}
-.github-lawn ul li .tip {
-  background:rgba(0, 0, 0, 0.8);
-  padding:8px 10px;
-  color:#adadad;
-  position:absolute;
-  top:-43px;
-  left:-100px;
-  width:190px;
-  display:none;
-  z-index:2;
-  font-size:11px;
-  border-radius:3px;
-  text-align:center;
-}
-.github-lawn ul li .tip:before{
-	content: "";
-	position: absolute;
-	top: 100%;
-	left: 50%;
- 	margin-left: -5px;
-	border: 5px solid transparent;
-	border-top: 5px solid rgba(0, 0, 0, 0.8);
-}
-.github-lawn ul li:hover .tip {
-  display:block;
-}
-.github-lawn ul li .tip span {
-  font-weight:bold;
-  color:#fff;
-  margin-right:5px;
-}
+<style lang="stylus" scoped>
+.github-lawn
+  &:after
+    content ""
+    display block
+    clear both
+    visibility hidden
+  ul
+    list-style none
+    margin 0
+    padding 0
+    float left
+    li
+      width 10px
+      height 10px
+      background #f0f0f0
+      margin 1px
+      position relative
+      &:last-child
+        margin-bottom 0
+      &.l1
+        background #f0f0f0
+      &.l2
+        background #c6e48b
+      &.l3
+        background #7bc96f
+      &.l4
+        background #239a3b
+      &.l5
+        background #196127
+      .tip
+        background rgba(0, 0, 0, 0.8)
+        padding 8px 10px
+        color #adadad
+        position absolute
+        top -48px
+        left -110px
+        width 210px
+        display none
+        z-index 2
+        font-size 11px
+        border-radius 3px
+        text-align center
+        span
+          font-weight bold
+          color #fff
+          margin-right 5px
+        &:before
+          content  ""
+          position  absolute
+          top  100%
+          left  50%
+          margin-left  -5px
+          border  5px solid transparent
+          border-top  5px solid rgba(0, 0, 0, 0.8)
+      &:hover
+        .tip
+          display block
 </style>
