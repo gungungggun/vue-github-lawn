@@ -27,7 +27,9 @@ var webpackConfig = merge(baseWebpackConfig, {
   },
   output: {
     path: config.build.assetsRoot,
-    filename: 'build.js'
+    filename: 'build.js',
+    library: 'vuejs-uploader',
+    libraryTarget: 'commonjs2'
     //filename: utils.assetsPath('js/[name].[chunkhash].js'),
     //chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
